@@ -4,7 +4,8 @@
   "description": "",
   "main": "out/index.js",
   "scripts": {
-    "start": "tsc && node out/index.js"
+    "start": "tsc && node out/index.js",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
