@@ -7,4 +7,6 @@ const TradersSchema = new mongoose.Schema<ITraders>({
     money: Number
 });
 
-module.exports = mongoose.model('Traders', TradersSchema);
+const Traders = mongoose.model('Traders', TradersSchema);
+
+export  default Traders;

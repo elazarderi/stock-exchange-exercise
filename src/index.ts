@@ -16,10 +16,12 @@ app.use('/', router);
 app.use(express.static(path.join(__dirname, "public")));
 
 // start the express server
-app.listen(port, () => {    
-    console.log( `server started at http://localhost:${port}`);
+app.listen(port, () => {
+    console.log(`server started at http://localhost:${port}`);
 });
 
-mongoose.connect(process.env.MONGO_URI!, { useNewUrlParser: true } as ConnectOptions)
-    .then(() => console.log('success'))
+mongoose.connect(process.env.MONGO_URI!, {
+    useNewUrlParser: true, dbName: "stock-exchange", useUnifiedTopology: true
+} as ConnectOptions)
+    .then(() => console.log('database connected successfully'))
     .catch((err) => console.log(err));

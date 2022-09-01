@@ -1,12 +1,12 @@
 import * as express from "express";
-import Traders  from './traders.schema';
+import { Model } from "mongoose";
+import { ITraders } from "../types/traders.interface";
+import Traders from './traders.schema'
 
 export const router = express.Router();
 
 router.get('/all', async (req, res) => {
-    console.log(Traders);
-    
-    const traders = await Traders.find({});
+    const traders = await Traders.find({}).exec();
     try {
         res.send(traders);
     } catch (err) {
