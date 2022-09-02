@@ -1,0 +1,8 @@
+{
+    "dbConfig": {
+        "host": "sql6.freesqldatabase.com",
+        "name": "sql6516812",
+        "user": "sql6516812",
+        "port": 3306
+    }
+}

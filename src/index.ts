@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
-import mongoose, { ConnectOptions } from 'mongoose';
 import * as dotenv from 'dotenv';
+import connection from "./instances/sequelize.instance";
 import { router } from "./routes";
 
 dotenv.config({ path: __dirname + '/../.env' });
@@ -16,12 +16,15 @@ app.use('/', router);
 app.use(express.static(path.join(__dirname, "public")));
 
 // start the express server
-app.listen(port, () => {
-    console.log(`server started at http://localhost:${port}`);
-});
-
-mongoose.connect(process.env.MONGO_URI!, {
-    useNewUrlParser: true, dbName: "stock-exchange", useUnifiedTopology: true
-} as ConnectOptions)
-    .then(() => console.log('database connected successfully'))
-    .catch((err) => console.log(err));
+const start = async (): Promise<void> => {
+    try {
+        await connection.sync();
+        app.listen(port, () => {
+            console.log(`Server started on port ${port}`);
+        });
+    } catch (error) {
+        console.error(error);
+        process.exit(1);
+    }
+}
+void start();
