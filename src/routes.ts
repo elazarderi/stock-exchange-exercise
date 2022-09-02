@@ -2,8 +2,8 @@ import * as express from "express";
 
 export const router = express.Router();
 
-import tradersRoutes from './traders/traders.route';
-import sharesRoutes from './shares/shares.routes';
+import tradersRoutes from './routes/traders.route';
+import sharesRoutes from './routes/shares.routes';
 
 router.get('/', (req, res) => {
     res.send('Hello world!');

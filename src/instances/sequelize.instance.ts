@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize-typescript";
 import config from 'config';
-import { Share } from "../shares/shares.model";
+import { Share } from "../models/shares.model";
 import * as dotenv from 'dotenv';
-import { Trader } from "../traders/traders.model";
+import { Trader } from "../models/traders.model";
 
 dotenv.config({ path: __dirname + '/../../.env' });
 

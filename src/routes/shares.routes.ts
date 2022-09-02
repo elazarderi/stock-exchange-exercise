@@ -1,13 +1,13 @@
 import * as express from "express";
-import { ITrader } from "../types/trader.interface";
-import { Trader } from "./traders.model";
+import { Share } from "../models/shares.model";
+import { IShare } from "../types/share.interface";
 
 export const router = express.Router();
 
 router.get('/all', async (req, res) => {
     try {
-        const traders: ITrader[] = await Trader.findAll();
-        res.send(traders);
+        const shares: IShare[] = await Share.findAll();
+        res.send(shares);
     } catch (err) {
         res.status(500).send(err);
     }
