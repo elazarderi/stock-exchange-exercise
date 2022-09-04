@@ -1,8 +1,7 @@
 import { Sequelize } from "sequelize-typescript";
 import config from 'config';
-import { Share } from "../models/shares.model";
 import * as dotenv from 'dotenv';
-import { Trader } from "../models/traders.model";
+import { Deal, Offer, TraderOwn, Trader, Share } from "../models";
 
 dotenv.config({ path: __dirname + '/../../.env' });
 
@@ -13,7 +12,7 @@ const connection = new Sequelize(
     {
         host: config.get('dbConfig.host') as string,
         dialect: 'mysql',
-        models: [Share, Trader],
+        models: [Share, Trader, Offer, Deal, TraderOwn],
         pool: {
             max: 5,
             min: 0,

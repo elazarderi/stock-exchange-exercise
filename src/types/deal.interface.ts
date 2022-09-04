@@ -1,8 +1,12 @@
+import { IOffer } from ".";
+
 export interface IDeal {
     id: number;
-    shareId: number;
     sellerOfferId: number;
-    buyerOfferId: string;
+    buyerOfferId: number;
     price: number;
     date: Date;
+
+    sellerOffer?: IOffer;
+    buyerOffer?: IOffer;
 }

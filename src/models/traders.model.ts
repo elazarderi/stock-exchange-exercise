@@ -1,5 +1,5 @@
 import { Table, Model, Column, DataType } from "sequelize-typescript";
-import { ITrader } from "../types/index";
+import { ITrader } from "../types";
 
 @Table({
     timestamps: false,

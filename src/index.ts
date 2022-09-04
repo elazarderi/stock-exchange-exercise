@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import * as dotenv from 'dotenv';
-import connection from "./instances/sequelize.instance";
+import connection from "./db/sequelize.instance";
 import { router } from "./routes";
 
 dotenv.config({ path: __dirname + '/../.env' });

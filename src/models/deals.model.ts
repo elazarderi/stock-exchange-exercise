@@ -1,6 +1,6 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
-import { IDeal, IOffer, IShare } from "../types/index";
-import { Offer, Share } from "./index";
+import { IDeal, IOffer } from "../types";
+import { Offer } from ".";
 
 @Table({
     timestamps: false,
@@ -15,26 +15,18 @@ export class Deal extends Model implements IDeal {
     })
     id!: number;
 
-    @ForeignKey(() => Share)
-    @Column
-    shareId!: number;
-
-    @BelongsTo(() => Share)
-    share!: IShare;
-
     @ForeignKey(() => Offer)
     @Column
     sellerOfferId!: number;
 
     @BelongsTo(() => Offer)
-    @Column sellerOffer!: IOffer;
+    sellerOffer!: IOffer;
 
     @ForeignKey(() => Offer)
     @Column
-    buyerOfferId!: string;
+    buyerOfferId!: number;
 
     @BelongsTo(() => Offer)
-    @Column
     buyerOffer!: IOffer;
 
     @Column

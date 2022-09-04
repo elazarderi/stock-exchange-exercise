@@ -13,6 +13,7 @@
     "sourceMap": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": true
   }
 }

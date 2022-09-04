@@ -1,11 +1,13 @@
-import { Deal } from './deals.model';
-import { Offer } from './offers.model';
-import { Share } from './shares.model';
+import { TraderOwn } from './traders-owns.model';
 import { Trader } from './traders.model';
+import { Share } from './shares.model';
+import { Offer } from './offers.model';
+import { Deal } from './deals.model';
 
 export {
-    Deal,
+    TraderOwn,
+    Trader,
     Offer,
     Share,
-    Trader
+    Deal
 }

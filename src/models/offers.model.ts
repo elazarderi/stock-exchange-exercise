@@ -1,6 +1,6 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
-import { TDealPreformerType, TOfferType, IOffer, IShare, ITrader } from "../types/index";
-import { Share, Trader } from "./index";
+import { TDealPreformerType, TOfferType, IOffer, IShare, ITrader } from "../types";
+import { Share, Trader } from ".";
 
 @Table({
     timestamps: false,
@@ -15,30 +15,36 @@ export class Offer extends Model implements IOffer {
     })
     id!: number;
 
-    @ForeignKey(() => Trader)
     @Column
-    offeredId!: number;
-
-    @BelongsTo(() => Trader)
-    offered!: ITrader;
+    type!: TOfferType;
 
     @Column
     offeredType!: TDealPreformerType;
 
+    @ForeignKey(() => Trader)
     @Column
-    type!: TOfferType;
+    offeredTraderId?: number;
+
+    @BelongsTo(() => Trader)
+    offeredTrader?: ITrader;
 
     @ForeignKey(() => Share)
     @Column
     shareId!: number;
 
     @BelongsTo(() => Share)
-    share!: IShare;
+    share?: IShare;
 
-    @Column
+    @Column({
+        type: DataType.BOOLEAN,
+        defaultValue: false
+    })
     isPerformed!: boolean;
 
-    @Column
+    @Column({
+        type:DataType.DATE,
+        defaultValue: new Date()
+    })
     requestDate!: Date;
 
     @Column({

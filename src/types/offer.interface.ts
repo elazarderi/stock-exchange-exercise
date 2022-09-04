@@ -1,12 +1,15 @@
-import { TDealPreformerType,TOfferType } from "./index";
+import { TDealPreformerType, TOfferType, ITrader, IShare } from ".";
 
 export interface IOffer {
-    id: number;
+	id: number;
 	type: TOfferType;
-	offeredId: number;
 	offeredType: TDealPreformerType;
+	offeredTraderId?: number;
 	shareId: number;
 	isPerformed: boolean;
 	requestDate: Date;
 	isDeleted: boolean;
+
+	offeredTrader?: ITrader;
+	share?: IShare;
 }
