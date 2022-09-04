@@ -1,5 +1,5 @@
 import { Table, Model, Column, DataType } from "sequelize-typescript";
-import { IShare } from "../types/share.interface";
+import { IShare } from "../types/index";
 
 @Table({
     timestamps: false,

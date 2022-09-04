@@ -1,6 +1,6 @@
 import * as express from "express";
-import { Share } from "../models/shares.model";
-import { IShare } from "../types/share.interface";
+import { Share } from "../models/index";
+import { IShare } from "../types/index";
 
 export const router = express.Router();
 

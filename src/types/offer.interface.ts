@@ -1,5 +1,4 @@
-import { TDealPreformerType } from "./deal-preformer-type.type";
-import { TOfferType } from "./offer-type.type";
+import { TDealPreformerType,TOfferType } from "./index";
 
 export interface IOffer {
     id: number;

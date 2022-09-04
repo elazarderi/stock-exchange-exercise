@@ -1,6 +1,6 @@
 import * as express from "express";
-import { ITrader } from "../types/trader.interface";
-import { Trader } from "../models/traders.model";
+import { ITrader } from "../types/index";
+import { Trader } from "../models/index";
 
 export const router = express.Router();
 

@@ -1,5 +1,3 @@
-import { TDealPreformerType } from "./deal-preformer-type.type";
-
 export interface IDeal {
     id: number;
     shareId: number;

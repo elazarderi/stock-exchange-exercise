@@ -1,9 +1,6 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
-import { IDeal } from "../types/deal.interface";
-import { IOffer } from "../types/offer.interface";
-import { IShare } from "../types/share.interface";
-import { Offer } from "./offers.model";
-import { Share } from "./shares.model";
+import { IDeal, IOffer, IShare } from "../types/index";
+import { Offer, Share } from "./index";
 
 @Table({
     timestamps: false,
