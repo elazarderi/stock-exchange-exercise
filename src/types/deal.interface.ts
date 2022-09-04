@@ -1,12 +1,10 @@
-import { TDealPreformerType } from "./dealPreformerType.type";
+import { TDealPreformerType } from "./deal-preformer-type.type";
 
 export interface IDeal {
-    id: string;
-    shareId: string;
-    sellerId: string;
-    sellerType: TDealPreformerType;
-    buyerId: string;
-    buyerType: TDealPreformerType;
+    id: number;
+    shareId: number;
+    sellerOfferId: number;
+    buyerOfferId: string;
     price: number;
     date: Date;
 }
