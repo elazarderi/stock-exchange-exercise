@@ -38,9 +38,16 @@ INSERT INTO `traders` (`name`, `money`) VALUES ('Galit', '3000000');
 INSERT INTO `traders` (`name`, `money`) VALUES ('Liat', '100000');
 
 -- offers init
-INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '8', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '10', '0', '2022-09-04 22:05:45', '0');
 INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '8', '0', '2022-09-04 22:05:45', '0');
 INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '9', '0', '2022-09-04 22:05:45', '0');
-INSERT INTO `offers` (`type`, `offeredType`, `offeredTraderId`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('buy', 'trader', '2', '8', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `offeredTraderId`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('buy', 'trader', '1', '8', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `offeredTraderId`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('buy', 'trader', '9', '4', '0', '2022-09-04 22:05:45', '0');
 
+-- deals init
+INSERT INTO `deals` (`sellerOfferId`, `buyerOfferId`, `price`) VALUES ('2', '4', '50');
+INSERT INTO `deals` (`sellerOfferId`, `buyerOfferId`, `price`) VALUES ('3', '5', '330');
 
+-- traders-owns init
+INSERT INTO `tradersOwns` (`traderId`, `shareId`) VALUES ('4', '8');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`) VALUES ('2', '9');

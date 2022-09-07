@@ -1,13 +1,13 @@
 import * as express from "express";
-import { Share } from "../models/index";
-import { IShare } from "../types/index";
+import { SharesController } from "../controllers/shares.controller";
 
 export const router = express.Router();
 
-router.get('/all', async (req, res) => {
+router.get('/all', SharesController.getShares);
+
+router.get('/:id', async (req, res) => {
     try {
-        const shares: IShare[] = await Share.findAll();
-        res.send(shares);
+        req.params.id
     } catch (err) {
         res.status(500).send(err);
     }
