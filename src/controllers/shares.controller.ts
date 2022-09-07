@@ -17,7 +17,8 @@ export const SharesController = {
         try {
             const id = req.params.id;
             if (!id) throw Error('id not provided!');
-            const share: IShare | null = await Share.findOne({ where: { id } })
+            const share: IShare | null = await Share.findOne({ where: { id } });
+            res.send(share);
         } catch (err) {
             res.status(500).send(err);
         }

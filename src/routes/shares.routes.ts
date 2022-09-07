@@ -5,12 +5,6 @@ export const router = express.Router();
 
 router.get('/all', SharesController.getShares);
 
-router.get('/:id', async (req, res) => {
-    try {
-        req.params.id
-    } catch (err) {
-        res.status(500).send(err);
-    }
-})
+router.get('/:id', SharesController.getShareById)
 
 export default router;
