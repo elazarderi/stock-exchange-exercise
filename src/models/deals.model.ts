@@ -18,15 +18,13 @@ export class Deal extends Model implements IDeal {
     @ForeignKey(() => Offer)
     @Column
     sellerOfferId!: number;
-
-    @BelongsTo(() => Offer)
+    @BelongsTo(() => Offer, { foreignKey: 'sellerOfferId', as: 'sellerOffer' })
     sellerOffer!: IOffer;
 
     @ForeignKey(() => Offer)
     @Column
     buyerOfferId!: number;
-
-    @BelongsTo(() => Offer)
+    @BelongsTo(() => Offer, { foreignKey: 'buyerOfferId', as: 'buyerOffer' })
     buyerOffer!: IOffer;
 
     @Column

@@ -1,4 +1,4 @@
-import { TDealPreformerType, TOfferType, ITrader, IShare } from ".";
+import { TDealPreformerType, TOfferType, ITrader, IShare, IDeal } from ".";
 
 export interface IOffer {
 	id: number;
@@ -12,4 +12,5 @@ export interface IOffer {
 
 	offeredTrader?: ITrader;
 	share?: IShare;
+	deals?: IDeal[];
 }
