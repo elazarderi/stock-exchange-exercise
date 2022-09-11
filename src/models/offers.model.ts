@@ -1,6 +1,6 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
-import { TDealPreformerType, TOfferType, IOffer, IShare, ITrader } from "../types";
 import { Share, Trader } from ".";
+import { IOffer, IShare, ITrader, TDealPreformerType, TOfferType } from "../types";
 
 @Table({
     timestamps: false,

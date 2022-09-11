@@ -1,5 +1,6 @@
-import { Table, Model, Column, DataType } from "sequelize-typescript";
-import { IShare } from "../types";
+import { Table, Model, Column, DataType, HasMany, BelongsTo, ForeignKey } from "sequelize-typescript";
+import { IOffer, IShare } from "../types";
+import { Offer } from "./offers.model";
 
 @Table({
     timestamps: false,
@@ -33,4 +34,7 @@ export class Share extends Model implements IShare {
         defaultValue: 0,
     })
     amount!: number;
+
+    @HasMany(() => Offer)
+    offers?: IOffer[];
 }
