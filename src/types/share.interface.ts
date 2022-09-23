@@ -1,3 +1,4 @@
+import { IDeal } from "./deal.interface";
 import { IOffer } from "./offer.interface";
 
 export interface IShare {
@@ -8,3 +9,5 @@ export interface IShare {
 
     offers?: IOffer[];
 }
+
+export type IShareDeals = (IShare | null) & IDeal;

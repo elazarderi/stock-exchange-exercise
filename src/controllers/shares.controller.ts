@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Deal, Offer, Share } from "../models";
 import { IDeal, IShare } from "../types";
+import { IShareDeals } from "../types/share.interface";
 
 export const SharesController = {
 
@@ -17,7 +18,8 @@ export const SharesController = {
         try {
             const id = req.params.id;
             if (!id) throw Error('id not provided!');
-            const share: IShare | null = await Share.findOne({
+
+            const share: Promise<IShare | null> = Share.findOne({
                 include: [
                     {
                         model: Offer,
@@ -28,7 +30,7 @@ export const SharesController = {
                 where: { id },
             });
 
-            const deals: IDeal[] = await Deal.findAll({
+            const deals: Promise<IDeal[]> = Deal.findAll({
                 include: [
                     {
                         model: Offer,
@@ -40,13 +42,17 @@ export const SharesController = {
                         as: 'sellerOffer',
                         where: { shareId: id }
                     }
-                ]
-            })
-            res.send({share, deals});
+                ],
+                limit: 10,
+                subQuery: false,
+                order: [['date', 'ASC']]
+            });
+            const shareDeals:IShareDeals = await Promise.all([share, deals]);
+
+            res.send(shareDeals);
         } catch (err) {
             console.error(err);
             res.status(500).send(err);
         }
     }
 }
-
