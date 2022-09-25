@@ -1,4 +1,4 @@
-import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, ForeignKey, HasMany, HasOne, Model, Table } from "sequelize-typescript";
 import { Share, Trader, Deal } from ".";
 import { IDeal, IOffer, IShare, ITrader, TDealPreformerType, TOfferType } from "../types";
 
@@ -53,6 +53,6 @@ export class Offer extends Model implements IOffer {
     })
     isDeleted!: boolean;
 
-    @HasMany(() => Deal)
-    deals?: IDeal[];
+    @HasOne(() => Deal)
+    deal?: IDeal;
 }

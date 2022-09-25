@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Offer, Trader, TraderOwn } from "../models";
+import { Deal, Offer, Trader, TraderOwn } from "../models";
 import { ITrader } from "../types";
 
 export const TradersController = {
@@ -24,7 +24,7 @@ export const TradersController = {
         }
     },
 
-    getTradersById: async (req: Request, res: Response) => {
+    getTraderStatus: async (req: Request, res: Response) => {
         try {
             const id = req.params.id;
             if (!id) throw Error('id not provided!');
@@ -46,9 +46,7 @@ export const TradersController = {
                         required: false
                     }
                 ],
-                where: {
-                    id
-                }
+                where: { id }
             });
             res.send(trader);
         } catch (err) {
@@ -56,10 +54,30 @@ export const TradersController = {
         }
     },
 
-    getTradersDetails: async (req: Request, res: Response) => {
-        const id = req.params.id;
-        if (!id) throw Error('id not provided!');
+    getTraderDeals: async (req: Request, res: Response) => {
+        try {
+            const id = req.params.id;
+            if (!id) throw Error('id not provided!');
 
-        // const deals: I
+            const trader: ITrader | null = await Trader.findOne({
+                include: [{
+                    model: Offer,
+                    as: 'offers',
+                    where: {
+                        isPerformed: true,
+                        isDeleted: false
+                    },
+                    include: [{
+                        model: Deal,
+                        as: 'deal'
+                    }],
+                    limit:
+                }],
+                where: { id }
+            });
+            res.send(trader);
+        } catch (err) {
+            res.status(500).send(err);
+        }
     }
 }

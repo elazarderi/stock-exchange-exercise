@@ -12,5 +12,5 @@ export interface IOffer {
 
 	offeredTrader?: ITrader;
 	share?: IShare;
-	deals?: IDeal[];
+	deal?: IDeal;
 }
