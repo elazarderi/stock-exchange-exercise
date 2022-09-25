@@ -35,14 +35,20 @@ export const TradersController = {
                         model: Offer,
                         as: 'offers',
                         where: {
-                            isPreformed: false
-                        }
+                            isPerformed: false,
+                            isDeleted: false
+                        },
+                        required: false
                     },
                     {
                         model: TraderOwn,
-                        as: 'teaderOwns'
+                        as: 'traderOwns',
+                        required: false
                     }
-                ]
+                ],
+                where: {
+                    id
+                }
             });
             res.send(trader);
         } catch (err) {
@@ -50,7 +56,7 @@ export const TradersController = {
         }
     },
 
-    getTraderDeals: async (req: Request, res: Response) => {
+    getTradersDetails: async (req: Request, res: Response) => {
         const id = req.params.id;
         if (!id) throw Error('id not provided!');
 

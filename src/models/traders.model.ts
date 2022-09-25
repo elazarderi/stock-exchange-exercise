@@ -1,5 +1,7 @@
-import { Table, Model, Column, DataType } from "sequelize-typescript";
-import { ITrader } from "../types";
+import { Table, Model, Column, DataType, HasMany } from "sequelize-typescript";
+import { IOffer, ITrader, ITraderOwn } from "../types";
+import { Offer } from "./offers.model";
+import { TraderOwn } from "./traders-owns.model";
 
 @Table({
     timestamps: false,
@@ -26,4 +28,10 @@ export class Trader extends Model implements ITrader {
         defaultValue: 0,
     })
     money!: number;
+
+    @HasMany(() => Offer)
+    offers? : IOffer[];
+
+    @HasMany(() => TraderOwn)
+    traderOwns?: ITraderOwn[];
 }
