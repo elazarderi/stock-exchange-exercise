@@ -9,5 +9,3 @@ export interface IShare {
 
     offers?: IOffer[];
 }
-
-export type IShareDeals = (IShare | null) & IDeal;

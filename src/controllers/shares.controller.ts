@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { Deal, Offer, Share } from "../models";
 import { IDeal, IShare } from "../types";
-import { IShareDeals } from "../types/share.interface";
 
 export const SharesController = {
 
@@ -47,9 +46,12 @@ export const SharesController = {
                 subQuery: false,
                 order: [['date', 'ASC']]
             });
-            const shareDeals:IShareDeals = await Promise.all([share, deals]);
 
-            res.send(shareDeals);
+            const shareDeals: Map<IShare | null, IDeal[]> = await Promise.all([share, deals]).then(([s, d]) => {
+                return new Map<IShare | null, IDeal[]>().set(s, d);
+            });
+
+            res.send(...shareDeals);
         } catch (err) {
             console.error(err);
             res.status(500).send(err);
