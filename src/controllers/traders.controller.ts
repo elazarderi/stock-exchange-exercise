@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { Op } from "sequelize";
 import { Deal, Offer, Trader, TraderOwn } from "../models";
 import { ITrader } from "../types";
 
