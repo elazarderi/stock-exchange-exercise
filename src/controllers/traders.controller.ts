@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { Op } from "sequelize";
 import { Deal, Offer, Trader, TraderOwn } from "../models";
 import { ITrader } from "../types";
 
@@ -69,9 +70,10 @@ export const TradersController = {
                     },
                     include: [{
                         model: Deal,
-                        as: 'deal'
+                        as: 'deal',
+                        required: true
                     }],
-                    limit:
+                    limit: 8
                 }],
                 where: { id }
             });
