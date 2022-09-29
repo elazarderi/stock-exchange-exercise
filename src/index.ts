@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import cors from 'cors';
 import * as dotenv from 'dotenv';
 import connection from "./db/sequelize.instance";
 import { router } from "./routes";
@@ -9,9 +10,11 @@ dotenv.config({ path: __dirname + '/../.env' });
 const app = express();
 const port = process.env.SERVER_PORT;
 
+app.use(cors());
+
 app.use(express.json());
 
-app.use('/', router);
+app.use('/api/', router);
 
 app.use(express.static(path.join(__dirname, "public")));
 
