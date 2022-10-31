@@ -36,6 +36,7 @@ INSERT INTO `traders` (`name`, `money`) VALUES ('Eldad', '17000');
 INSERT INTO `traders` (`name`, `money`) VALUES ('Hadar', '5000000');
 INSERT INTO `traders` (`name`, `money`) VALUES ('Galit', '3000000');
 INSERT INTO `traders` (`name`, `money`) VALUES ('Liat', '100000');
+INSERT INTO `traders` (`name`, `money`) VALUES ('lala', '100000');
 
 -- offers init
 INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '10', '0', '2022-09-04 22:05:45', '0');
@@ -54,3 +55,6 @@ INSERT INTO `deals` (`sellerOfferId`, `buyerOfferId`, `price`) VALUES ('6', '7',
 -- traders-owns init
 INSERT INTO `tradersOwns` (`traderId`, `shareId`) VALUES ('4', '8');
 INSERT INTO `tradersOwns` (`traderId`, `shareId`) VALUES ('2', '9');
+
+-- users init
+INSERT INTO `users` (`firstName`, `lastName`, `userName`, `password`, `traderId`) VALUES ('lala', 'lala', 'lala', '$2b$10$6MRqKl0sTjztNgYABF.XJe.tCr389nvi3UK4UwFcRidlWKFiVcSf.', '21');

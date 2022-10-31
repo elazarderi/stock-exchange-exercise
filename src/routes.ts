@@ -40,6 +40,7 @@ router.post('/signup', async (req, res, next) => {
         res.status(201).json(createdUser);
     } catch (error) {
         if (transaction) await transaction.rollback();
+        res.status(400).json("User does not created properly");
     }
 });
 
@@ -51,10 +52,10 @@ router.post('/signin', async (req, res, next) => {
             let token: string = jwt.sign({ 'id': user.id, 'userName': user.userName }, process.env.SECRET);
             res.status(200).json({ token });
         } else {
-            res.status(400).json({ error: "Password Incorrect" });
+            res.status(400).json("Password Incorrect");
         }
     } else {
-        res.status(404).json({ error: "User does not exist" });
+        res.status(400).json("User does not exist");
     }
 });
 
