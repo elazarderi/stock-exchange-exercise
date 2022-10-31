@@ -1,33 +1,49 @@
 import * as express from "express";
 import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
-
-export const router = express.Router();
-
 import tradersRoutes from './routes/traders.route';
 import sharesRoutes from './routes/shares.routes';
 import offersRoutes from './routes/offers.routes';
 import dealsRoutes from './routes/deals.route';
-import { IUser } from "./types";
-import { User } from "./models";
+import { ITrader, IUser } from "./types";
+import { Trader, User } from "./models";
+import connection from "./db/sequelize.instance";
+import { Transaction } from "sequelize/types";
+
+export const router = express.Router();
 
 router.get('/', (req, res) => {
     res.send('Hello world!');
 });
 
-router.post('/register', async (req, res, next) => {
+router.post('/signup', async (req, res, next) => {
     const salt = await bcrypt.genSalt(10);
-    const user: Partial<IUser> = {
+    let user: Partial<IUser> = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         userName: req.body.userName,
         password: await bcrypt.hash(req.body.password, salt)
     };
-    const createdUser = await User.create(user);
-    res.status(201).json(createdUser);
+    const trader: Partial<ITrader> = {
+        name: user.firstName,
+        money: 0
+    };
+
+    let transaction: Transaction;
+    try {
+        transaction = await connection.transaction();
+        const createdUser = await Trader.create(trader, { transaction }).then(async trader => {
+            user.traderId = trader.id;
+            return await User.create(user, { transaction });
+        });
+        await transaction.commit();
+        res.status(201).json(createdUser);
+    } catch (error) {
+        if (transaction) await transaction.rollback();
+    }
 });
 
-router.post('/login', async (req, res, next) => {
+router.post('/signin', async (req, res, next) => {
     const user: IUser = await User.findOne({ where: { userName: req.body.userName } });
     if (user) {
         const passwordValid: boolean = await bcrypt.compare(req.body.password, user.password);

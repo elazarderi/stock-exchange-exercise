@@ -1,5 +1,6 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
-import { IUser } from "../types";
+import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { ITrader, IUser } from "../types";
+import { Trader } from "./traders.model";
 
 @Table({
     timestamps: false,
@@ -25,4 +26,11 @@ export class User extends Model implements IUser {
     
     @Column
     password: string;
+
+    @ForeignKey(() => Trader)
+    @Column
+    traderId: number;
+
+    @BelongsTo(() => Trader)
+    trader?: ITrader;
 }
