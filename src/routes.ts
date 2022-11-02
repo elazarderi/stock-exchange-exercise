@@ -59,7 +59,7 @@ router.post('/signin', async (req, res, next) => {
     }
 });
 
-router.get('/me',
+router.get('/user-profile',
     async (req, res, next) => {
         try {
             let token = req.headers['authorization'].split(" ")[1];
