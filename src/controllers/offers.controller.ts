@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Offer, Trader } from "../models";
 import { IOffer, TOfferType } from "../types";
+import { balanceOffers } from "../services/offers.service";
 
 export const OffersController = {
 
@@ -26,8 +27,9 @@ export const OffersController = {
 
     makeOffer: async (req: Request, res: Response) => {
         try {
-            const { shareId, traderId, type }: { shareId: number, traderId: number, type: TOfferType } = req.body;
-            if (!(shareId && traderId && type)) throw Error('share, trader of type not provided!');
+            const { shareId, traderId, type, price }:
+                { shareId: number, traderId: number, type: TOfferType, price: number } = req.body;
+            if (!(shareId && traderId && type && price)) throw Error('share, trader, price or type not provided!');
             console.log(shareId, traderId, type);
 
             const offer: Partial<IOffer> = {
@@ -39,8 +41,11 @@ export const OffersController = {
                 requestDate: new Date(),
                 isDeleted: false
             }
-            await Offer.create(offer);
-
+            await Offer.create(offer).then(async createdOffer => {
+                await balanceOffers(createdOffer, price);
+            });
+            
+            res.send(offer);
         } catch (err) {
             console.error(err);
             res.status(500).send(err);

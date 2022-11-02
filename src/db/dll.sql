@@ -39,6 +39,7 @@ INSERT INTO `traders` (`name`, `money`) VALUES ('Hadar', '5000000');
 INSERT INTO `traders` (`name`, `money`) VALUES ('Galit', '3000000');
 INSERT INTO `traders` (`name`, `money`) VALUES ('Liat', '100000');
 INSERT INTO `traders` (`name`, `money`) VALUES ('lala', '100000');
+INSERT INTO `traders` (`name`, `money`) VALUES ('baba', '0');
 
 -- offers init
 INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '10', '0', '2022-09-04 22:05:45', '0');
