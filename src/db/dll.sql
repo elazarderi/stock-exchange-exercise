@@ -1,3 +1,5 @@
+SET FOREIGN_KEY_CHECKS=0;
+
 -- shares init
 INSERT INTO `shares` (`name`, `currentPrice`, `amount`) VALUES ('Apple', '230', '1500');
 INSERT INTO `shares` (`name`, `currentPrice`, `amount`) VALUES ('Microsoft', '330', '10000');
@@ -64,3 +66,4 @@ INSERT INTO `tradersOwns` (`traderId`, `shareId`) VALUES ('2', '9');
 
 -- users init
 INSERT INTO `users` (`firstName`, `lastName`, `userName`, `password`, `traderId`) VALUES ('lala', 'lala', 'lala', '$2b$10$6MRqKl0sTjztNgYABF.XJe.tCr389nvi3UK4UwFcRidlWKFiVcSf.', '21');
+INSERT INTO `users` (`firstName`, `lastName`, `userName`, `password`, `traderId`) VALUES ('baba', 'baba', 'baba', '$2b$10$5tiF5RuACDKO/wKoFIKn.OgO.QNWNn.hc73Wty1xLJ38o3arC3PyW', '22');

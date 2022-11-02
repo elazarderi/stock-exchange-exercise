@@ -1,8 +1,8 @@
 {
     "dbConfig": {
-        "host": "db4free.net",
-        "name": "dbstock123456",
-        "user": "dbstock123456",
+        "host": "sql7.freesqldatabase.com",
+        "name": "sql7536235",
+        "user": "sql7536235",
         "port": 3306
     }
 }
