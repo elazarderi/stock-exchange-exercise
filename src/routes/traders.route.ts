@@ -5,6 +5,7 @@ export const router = express.Router();
 
 router.get('/all', TradersController.getTraders);
 router.get('/names', TradersController.getTradersNames);
+router.get('/:id', TradersController.getTradersById);
 router.get('/status/:id', TradersController.getTraderStatus);
 router.get('/deals/:id', TradersController.getTraderDeals);
 

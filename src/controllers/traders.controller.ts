@@ -24,6 +24,18 @@ export const TradersController = {
         }
     },
 
+    getTradersById: async (req: Request, res: Response) => {
+        try {
+            const id = req.params.id;
+            if (!id) throw Error('id not provided!');
+
+            const trader: ITrader = await Trader.findOne({ where: { id } });
+            res.send(trader);
+        } catch (err) {
+            res.status(500).send(err);
+        }
+    },
+
     getTraderStatus: async (req: Request, res: Response) => {
         try {
             const id = req.params.id;

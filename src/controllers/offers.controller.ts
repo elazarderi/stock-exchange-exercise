@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { Offer, Trader } from "../models";
-import { IOffer, TOfferType } from "../types";
-import { balanceOffers } from "../services/offers.service";
-
+import { Op, Transaction } from "sequelize";
+import connection from "../db/sequelize.instance";
+import { Deal, Offer, Share, Trader } from "../models";
+import { IDeal, IOffer, TOfferType } from "../types";
 export const OffersController = {
 
     getOffersByShareId: async (req: Request, res: Response) => {
@@ -30,7 +30,6 @@ export const OffersController = {
             const { shareId, traderId, type, price }:
                 { shareId: number, traderId: number, type: TOfferType, price: number } = req.body;
             if (!(shareId && traderId && type && price)) throw Error('share, trader, price or type not provided!');
-            console.log(shareId, traderId, type);
 
             const offer: Partial<IOffer> = {
                 type: type,
@@ -41,10 +40,55 @@ export const OffersController = {
                 requestDate: new Date(),
                 isDeleted: false
             }
-            await Offer.create(offer).then(async createdOffer => {
-                await balanceOffers(createdOffer, price);
-            });
+            let transaction: Transaction;
+            try {
+                transaction = await connection.transaction();
+                await Offer.create(offer, { transaction }).then(async createdOffer => {
+                    const machOffer: IOffer = await Offer.findOne({
+                        where: {
+                            shareId: createdOffer.shareId,
+                            type: { [Op.not]: createdOffer.type },
+                            isPerformed: false,
+                            isDeleted: false
+                        }
+                    });
+                    if (machOffer) {
+                        const buyOffer: IOffer = [createdOffer, machOffer].find(o => o.type == 'buy');
+                        const sellOffer: IOffer = [createdOffer, machOffer].find(o => o.type == 'sell');
+                        const deal: Partial<IDeal> = {
+                            date: new Date(),
+                            sellerOfferId: sellOffer.id,
+                            buyerOfferId: buyOffer.id,
+                            price
+                        }
+                        await Deal.create(deal, { transaction });
+                        await Offer.update({ isPerformed: true }, { where: { id: { [Op.in]: [createdOffer.id, machOffer.id] } }, transaction });
 
+                        if (buyOffer.offeredType == 'trader') {
+                            await Trader.findOne({ where: { id: buyOffer.offeredTraderId }, transaction }).then(async trader => {
+                                await Trader.update({ money: trader.money - (+price) }, { where: { id: trader.id }, transaction });
+                            });
+                        } else {
+                            await Share.findOne({ where: { id: buyOffer.shareId }, transaction }).then(async share => {
+                                await Share.update({ amount: share.amount + 1 }, { where: { id: buyOffer.shareId }, transaction });
+                            });
+                        }
+                        if (sellOffer.offeredType == 'trader') {
+                            await Trader.findOne({ where: { id: sellOffer.offeredTraderId }, transaction }).then(async trader => {
+                                await Trader.update({ money: trader.money + (+price) }, { where: { id: trader.id }, transaction });
+                            });
+                        } else {
+                            await Share.findOne({ where: { id: sellOffer.shareId }, transaction }).then(async share => {
+                                await Share.update({ amount: share.amount - 1 }, { where: { id: sellOffer.shareId }, transaction });
+                            });
+                        }
+                    }
+                    await transaction.commit();
+                });
+            } catch (error) {
+                if (transaction) await transaction.rollback();
+                throw Error("Deal does not created properly");
+            };
             res.send(offer);
         } catch (err) {
             console.error(err);

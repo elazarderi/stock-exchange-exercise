@@ -53,6 +53,8 @@ INSERT INTO `offers` (`type`, `offeredType`, `offeredTraderId`, `shareId`, `isPe
 INSERT INTO `offers` (`type`, `offeredType`, `offeredTraderId`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'trader', '22', '8', '1', '2022-09-04 22:05:45', '0');
 INSERT INTO `offers` (`type`, `offeredType`, `offeredTraderId`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('buy', 'trader', '4', '1', '1', '2022-09-04 22:05:45', '0');
 INSERT INTO `offers` (`type`, `offeredType`, `offeredTraderId`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'trader', '22', '1', '1', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('buy', 'company', '1', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '2', '0', '2022-09-04 22:05:45', '0');
 
 -- deals init
 INSERT INTO `deals` (`sellerOfferId`, `buyerOfferId`, `price`) VALUES ('2', '4', '50');
