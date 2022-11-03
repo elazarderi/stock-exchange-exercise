@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Op, Transaction } from "sequelize";
 import connection from "../db/sequelize.instance";
-import { Deal, Offer, Share, Trader } from "../models";
+import { Deal, Offer, Share, Trader, TraderOwn } from "../models";
 import { IDeal, IOffer, TOfferType } from "../types";
 export const OffersController = {
 
@@ -67,6 +67,7 @@ export const OffersController = {
                         if (buyOffer.offeredType == 'trader') {
                             await Trader.findOne({ where: { id: buyOffer.offeredTraderId }, transaction }).then(async trader => {
                                 await Trader.update({ money: trader.money - (+price) }, { where: { id: trader.id }, transaction });
+                                await TraderOwn.create({ traderId: trader.id, shareId: buyOffer.shareId, isDeleted: false }, { transaction });
                             });
                         } else {
                             await Share.findOne({ where: { id: buyOffer.shareId }, transaction }).then(async share => {
@@ -76,6 +77,9 @@ export const OffersController = {
                         if (sellOffer.offeredType == 'trader') {
                             await Trader.findOne({ where: { id: sellOffer.offeredTraderId }, transaction }).then(async trader => {
                                 await Trader.update({ money: trader.money + (+price) }, { where: { id: trader.id }, transaction });
+                                await TraderOwn.findOne({ where: { traderId: trader.id, shareId: sellOffer.shareId }, transaction }).then(async own => {
+                                    await TraderOwn.update({ isDeleted: true }, { where: { id: own.id }, transaction });
+                                });
                             });
                         } else {
                             await Share.findOne({ where: { id: sellOffer.shareId }, transaction }).then(async share => {
@@ -87,7 +91,7 @@ export const OffersController = {
                 });
             } catch (error) {
                 if (transaction) await transaction.rollback();
-                throw Error("Deal does not created properly");
+                throw Error("Offer does not created properly");
             };
             res.send(offer);
         } catch (err) {

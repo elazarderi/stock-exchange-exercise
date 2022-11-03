@@ -4,6 +4,7 @@ export interface ITraderOwn {
     id: number;
     traderId: number;
     shareId: number;
+    isDeleted: boolean;
 
     trader?: ITrader;
     share?: IShare;

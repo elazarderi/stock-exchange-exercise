@@ -28,4 +28,10 @@ export class TraderOwn extends Model implements ITraderOwn {
 
     @BelongsTo(() => Share)
     share?: IShare;
+
+    @Column({
+        type: DataType.BOOLEAN,
+        defaultValue: false
+    })
+    isDeleted!: boolean;
 }

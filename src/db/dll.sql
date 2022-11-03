@@ -64,8 +64,8 @@ INSERT INTO `deals` (`sellerOfferId`, `buyerOfferId`, `price`) VALUES ('9', '8',
 INSERT INTO `deals` (`sellerOfferId`, `buyerOfferId`, `price`) VALUES ('11', '10', '50');
 
 -- traders-owns init
-INSERT INTO `tradersOwns` (`traderId`, `shareId`) VALUES ('4', '8');
-INSERT INTO `tradersOwns` (`traderId`, `shareId`) VALUES ('2', '9');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('4', '8', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('2', '9', '0');
 
 -- users init
 INSERT INTO `users` (`firstName`, `lastName`, `userName`, `password`, `traderId`) VALUES ('lala', 'lala', 'lala', '$2b$10$6MRqKl0sTjztNgYABF.XJe.tCr389nvi3UK4UwFcRidlWKFiVcSf.', '21');
