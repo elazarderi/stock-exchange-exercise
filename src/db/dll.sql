@@ -54,7 +54,26 @@ INSERT INTO `offers` (`type`, `offeredType`, `offeredTraderId`, `shareId`, `isPe
 INSERT INTO `offers` (`type`, `offeredType`, `offeredTraderId`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('buy', 'trader', '4', '1', '1', '2022-09-04 22:05:45', '0');
 INSERT INTO `offers` (`type`, `offeredType`, `offeredTraderId`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'trader', '22', '1', '1', '2022-09-04 22:05:45', '0');
 INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('buy', 'company', '1', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '1', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '1', '0', '2022-09-04 22:05:45', '0');
 INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '2', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '2', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '3', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '3', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '4', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '4', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '5', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '5', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '6', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '6', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '7', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '7', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '8', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '8', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '9', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '9', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '10', '0', '2022-09-04 22:05:45', '0');
+INSERT INTO `offers` (`type`, `offeredType`, `shareId`, `isPerformed`, `requestDate`, `isDeleted`) VALUES ('sell', 'company', '10', '0', '2022-09-04 22:05:45', '0');
 
 -- deals init
 INSERT INTO `deals` (`sellerOfferId`, `buyerOfferId`, `price`) VALUES ('2', '4', '50');
@@ -66,6 +85,24 @@ INSERT INTO `deals` (`sellerOfferId`, `buyerOfferId`, `price`) VALUES ('11', '10
 -- traders-owns init
 INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('4', '8', '0');
 INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('2', '9', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('21', '1', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('21', '2', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('21', '3', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('21', '4', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('21', '5', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('21', '6', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('21', '7', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('21', '8', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('21', '9', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('22', '1', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('22', '2', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('22', '3', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('22', '4', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('22', '5', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('22', '6', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('22', '7', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('22', '8', '0');
+INSERT INTO `tradersOwns` (`traderId`, `shareId`, `isDeleted`) VALUES ('22', '9', '0');
 
 -- users init
 INSERT INTO `users` (`firstName`, `lastName`, `userName`, `password`, `traderId`) VALUES ('lala', 'lala', 'lala', '$2b$10$6MRqKl0sTjztNgYABF.XJe.tCr389nvi3UK4UwFcRidlWKFiVcSf.', '21');
