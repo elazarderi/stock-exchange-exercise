@@ -15,7 +15,7 @@ export const OffersController = {
                     model: Trader,
                     as: 'offeredTrader'
                 }],
-                where: { shareId, isPerformed: false }
+                where: { shareId, isPerformed: false, isDeleted: false }
             });
 
             res.send(offers);
@@ -44,11 +44,19 @@ export const OffersController = {
             await Offer.create(offer).then(async createdOffer => {
                 await balanceOffers(createdOffer, price);
             });
-            
+
             res.send(offer);
         } catch (err) {
             console.error(err);
             res.status(500).send(err);
         }
+    },
+
+    deleteOffer: async (req: Request, res: Response) => {
+        const offerId = req.params.id;
+        if (!offerId) throw Error('share id not provided!');
+
+        const result = await Offer.update({ isDeleted: true }, { where: { id: offerId } });
+        res.send(result);
     }
 }
